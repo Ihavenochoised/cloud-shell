@@ -53,7 +53,10 @@ npm start
 # → https://localhost:3000
 ```
 
-Open your browser and go to `http://localhost:3000`.
+Open your browser and go to `https://localhost:3000`.
+
+> [!WARNING]
+> Most browsers assume HTTP for localhost, so add in "https://" at the front of the URL!
 
 #### 🛠 Scripts
 
