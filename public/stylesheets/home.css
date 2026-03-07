@@ -9,13 +9,79 @@ body {
     display: flex;
     flex-direction: column;
     height: 100vh;
+    font-family: monospace;
 }
 
+/* Login screen */
+#login-screen {
+    position: fixed;
+    inset: 0;
+    background: #1e1e2e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+#login-box {
+    background: #181825;
+    border: 1px solid #313244;
+    border-radius: 8px;
+    padding: 32px;
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+#login-box h2 {
+    color: #cdd6f4;
+    font-size: 16px;
+    text-align: center;
+}
+
+#login-box input {
+    background: #1e1e2e;
+    border: 1px solid #45475a;
+    border-radius: 4px;
+    color: #cdd6f4;
+    padding: 10px 12px;
+    font-size: 14px;
+    font-family: monospace;
+    outline: none;
+}
+
+#login-box input:focus {
+    border-color: #89b4fa;
+}
+
+#login-box button {
+    background: #89b4fa;
+    color: #1e1e2e;
+    border: none;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#login-box button:hover {
+    background: #b4d0fa;
+}
+
+#login-error {
+    color: #f38ba8;
+    font-size: 12px;
+    text-align: center;
+    min-height: 16px;
+}
+
+/* Terminal */
 header {
     background: #181825;
     color: #cdd6f4;
     padding: 10px 16px;
-    font-family: monospace;
     font-size: 14px;
     border-bottom: 1px solid #313244;
     display: flex;
