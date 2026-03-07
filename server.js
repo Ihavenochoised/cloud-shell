@@ -34,6 +34,11 @@ app.post("/auth/login", async (req, res) => {
     res.json({ token });
 });
 
+// 404 handler
+app.use((req, res) => {
+    res.status(404).sendFile(path.join(__dirname, "public", "404.html"));
+});
+
 // --- HTTPS server ---
 const server = https.createServer(
     { key: fs.readFileSync("key.pem"), cert: fs.readFileSync("cert.pem") },
