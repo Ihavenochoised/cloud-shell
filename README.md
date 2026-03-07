@@ -59,6 +59,8 @@ openssl req -x509 -newkey rsa:2048 -keyout key.pem -out cert.pem -days 365 -node
 ```bash
 node -e "import('bcrypt').then(b => b.default.hash('your_password', 12).then(console.log))"
 ```
+> [!NOTE]
+> Please make sure that the above is run only after completing step 1, bcrypt is installed at step 1!
 
 4. Create your `.env` file:
 ```env
