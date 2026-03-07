@@ -13,3 +13,7 @@ dist/
 # OS/editor junk
 .DS_Store
 *.swp
+
+# Ignore certificates
+key.pem
+cert.pem
