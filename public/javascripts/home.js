@@ -34,6 +34,9 @@ function initTerminal(token) {
         ws.onopen = () => {
             statusEl.textContent = "● Connected";
             statusEl.style.color = "#a6e3a1";
+            
+            // Sync PTY size immediately on connect
+            ws.send(JSON.stringify({ type: "resize", cols: term.cols, rows: term.rows }));
         };
         ws.onclose = () => {
             statusEl.textContent = "● Disconnected";
@@ -49,6 +52,14 @@ function initTerminal(token) {
             if (ws.readyState === WebSocket.OPEN)
                 ws.send(JSON.stringify({ type: "input", data }));
         });
+
+        const resizeObserver = new ResizeObserver(() => {
+            fitAddon.fit();
+            if (ws.readyState === WebSocket.OPEN) {
+                ws.send(JSON.stringify({ type: "resize", cols: term.cols, rows: term.rows }));
+            }
+        });
+        resizeObserver.observe(document.getElementById("terminal-container"));
 
         window.addEventListener("resize", () => {
             fitAddon.fit();
