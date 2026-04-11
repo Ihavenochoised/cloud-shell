@@ -1,5 +1,6 @@
 import "dotenv/config";
-import https from "https";
+import https from "https"; // Use this if you want to run without TLS, e.g. behind a reverse proxy or with tailscale
+// import http from "http"; // Uncomment this and comment the above if you want to run without TLS, e.g. behind a reverse proxy or with tailscale
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -39,11 +40,16 @@ app.use((req, res) => {
     res.status(404).sendFile(path.join(__dirname, "public", "404.html"));
 });
 
-// --- HTTPS server ---
+// --- HTTPS server ---  (don't use this if you're using tailscale, because it handles TLS for you)
 const server = https.createServer(
     { key: fs.readFileSync("key.pem"), cert: fs.readFileSync("cert.pem") },
     app
 );
+
+/*
+// --- HTTP server --- (uncomment and comment the top if you want to run without TLS, e.g. behind a reverse proxy or with tailscale)
+const server = http.createServer(app);
+*/
 
 // --- WebSocket server ---
 const wss = new WebSocketServer({ noServer: true });
